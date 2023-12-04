@@ -2,6 +2,8 @@ const mongoose = require ('mongoose');
 const express = require('express');
 const router = express.Router();
 const Movie = require('../models/Movie');
+const {upload} = require('../middleware/file.middleware')
+const { uploadToCloudinary } = require('../middleware/file.middleware');
 
 router.get("/", async (req, res)=> {
     try {
@@ -26,7 +28,7 @@ router.get('/:id', async (req, res) => {
 	}
 });
 
-router.get("/title/:title", async (req, res)=> {
+router.get("title/:title", async (req, res)=> {
     const title = req.params.title;
     try {
       const moviesByTitle = await Movie.find({title: title})
@@ -71,17 +73,19 @@ router.get('/year/:year', async (req, res) => {
     }
   });
 
-  router.post('/create', async (req, res, next) =>{
+  router.post('/create', [upload.single('picture'),uploadToCloudinary], async (req, res, next) =>{
     try{
+        const moviePicture = req.file ? req.file_url : null; //req.file.path para sacar la ruta
         const newMovie = new Movie({
           title: req.body.title,
           director: req.body.director,
           year: req.body.year ,
-          genre: req.body.genre
+          genre: req.body.genre,
+          picture: moviePicture
         });
         const createdMovie = await newMovie.save();
         return res.status(201).json(createdMovie)
-
+        
     } catch(err){
         next(err)     
     }

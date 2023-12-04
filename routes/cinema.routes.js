@@ -84,6 +84,3 @@ router.put("/:id", async (req, res, next) => {
 
 module.exports = router
 
-//655b37c789bfcf16976d09cd
-
-//6565d2d7d5be6344f44837a2
