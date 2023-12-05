@@ -6,6 +6,7 @@ const MongoStore = require('connect-mongo');
 const Movie = require('./models/Movie.js');
 const PORT = 3000;
 const {isAuthenticated} = require('./middleware/auth.middleware')
+const path = require('path');
 const server = express()
 const cors = require("cors");
 const moviesRouter = require('./routes/movies.routes.js');
@@ -32,6 +33,7 @@ server.use(
 server.use(passport.initialize());
 server.use(passport.session());
 server.use(cors());
+server.use('/users/login', express.static(path.join(__dirname, 'frontend')));
 server.use(express.json());
 server.use(express.urlencoded({extended: false}));
 
