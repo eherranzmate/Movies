@@ -95,4 +95,4 @@
         descripción: "Fin de sesión"
     },
 
-]
+];

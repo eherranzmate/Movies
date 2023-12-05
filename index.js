@@ -47,6 +47,3 @@ server.listen(PORT, () => {
 });
 
 
-// cloud_name: 'dhqr2awes', 
-//   api_key: '525287915811729', 
-//   api_secret: '0mA_ZcPy2lhhoTBYGHtCi23eIVk' 
