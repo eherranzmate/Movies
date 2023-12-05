@@ -4,7 +4,7 @@ function login() {
     var password = document.getElementById("password").value;
 
     // Realizar la solicitud al back-end 
-    fetch('https://movies-bdybbhbt8-enrique-herranz-mate-projects.vercel.app/users/login/', {
+    fetch('http://localhost:3000/users/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
