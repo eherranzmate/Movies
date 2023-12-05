@@ -7,7 +7,7 @@ const Movie = require('./models/Movie.js');
 const PORT = 3000;
 const {isAuthenticated} = require('./middleware/auth.middleware')
 const server = express()
-
+const cors = require("cors");
 const moviesRouter = require('./routes/movies.routes.js');
 const cinemasRouter = require('./routes/cinema.routes.js');
 const userRouter = require('./routes/user.routes');
@@ -31,6 +31,7 @@ server.use(
 
 server.use(passport.initialize());
 server.use(passport.session());
+server.use(cors());
 server.use(express.json());
 server.use(express.urlencoded({extended: false}));
 
