@@ -33,7 +33,8 @@ server.use(
 server.use(passport.initialize());
 server.use(passport.session());
 server.use(cors());
-server.use('/users/login', express.static(path.join(__dirname, 'frontend')));
+server.use('/users/login', express.static(path.join(__dirname,'public','frontend')));
+
 server.use(express.json());
 server.use(express.urlencoded({extended: false}));
 
